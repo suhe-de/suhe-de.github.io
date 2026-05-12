@@ -1,11 +1,3 @@
-<!--
- * @Author: suhe
- * @Date: 2026-04-20 19:48:28
- * @LastEditors: suhe
- * @LastEditTime: 2026-04-20 19:50:59
- * @FilePath: \suhe-de.github.io\_posts\2020-02-28-sample-markdown.md
- * @Description: ${description}
--->
 ---
 layout: post
 title: 软件开发学习笔记
