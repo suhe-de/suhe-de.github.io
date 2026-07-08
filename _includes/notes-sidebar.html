@@ -1,0 +1,31 @@
+{% assign notes_date_format = site.date_format | default: "%B %-d, %Y" %}
+{% assign notes_posts = site.posts %}
+
+<aside class="notes-sidebar" data-notes-sidebar aria-label="笔记目录">
+  <div class="notes-sidebar-top">
+    <a class="notes-sidebar-brand" href="{{ '/' | absolute_url }}">
+      <span class="notes-brand-icon">✦</span>
+      <span class="notes-brand-text">suhe notes</span>
+    </a>
+    <button class="notes-sidebar-toggle" type="button" data-notes-sidebar-toggle aria-label="收起或展开笔记目录" aria-expanded="true">
+      <span class="notes-toggle-icon">‹</span>
+    </button>
+  </div>
+
+  <div class="notes-sidebar-section">
+    <div class="notes-sidebar-label">Notes</div>
+    <ol class="notes-sidebar-list">
+      {% for post in notes_posts %}
+      <li>
+        <a class="notes-sidebar-link{% if post.url == page.url %} active{% endif %}" href="{{ post.url | absolute_url }}" data-post-click="true">
+          <span class="notes-plant-icon plant-{{ forloop.index0 | modulo: 8 }}" aria-hidden="true"></span>
+          <span class="notes-link-copy">
+            <span class="note-dir-title">{{ post.title | strip_html }}</span>
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: notes_date_format }}</time>
+          </span>
+        </a>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</aside>
