@@ -159,8 +159,8 @@ footer-hover-col: "#C98FA0"
 #  - "/assets/css/custom-styles.css"
 
 # If you have common JavaScript files that should be included in every page, list them here
-#site-js:
-#  - "/assets/js/custom-script.js"
+site-js:
+  - "/assets/js/suhe-site.js"
 
 #################################
 # --- Web Analytics Section --- #

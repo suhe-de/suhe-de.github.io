@@ -1751,3 +1751,560 @@ pre {
     font-size: 1.28rem;
   }
 }
+/* --- Suhe notes directory and pagination --- */
+.home-notes-shell {
+  display: grid;
+  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+  gap: clamp(1rem, 2vw, 1.75rem);
+  align-items: start;
+}
+
+.notes-directory {
+  position: sticky;
+  top: 5.25rem;
+}
+
+.notes-directory-inner {
+  max-height: calc(100vh - 6.5rem);
+  overflow: auto;
+  background: rgba(255,255,255,0.66);
+  border: 1px solid rgba(143,168,200,0.20);
+  border-radius: 8px;
+  box-shadow: 0 14px 34px rgba(90,106,128,0.08);
+  padding: 1rem;
+}
+
+.notes-directory-title {
+  color: #394456;
+  font-family: var(--header-font);
+  font-size: 0.94rem;
+  font-weight: 680;
+  margin-bottom: 0.65rem;
+}
+
+.notes-directory-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.notes-directory-list li + li {
+  margin-top: 0.28rem;
+}
+
+.notes-directory-list a {
+  display: block;
+  color: #4d596b;
+  text-decoration: none;
+  border-radius: 8px;
+  padding: 0.5rem 0.58rem;
+  transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.notes-directory-list a:hover,
+.notes-directory-list a:focus {
+  color: #9d6174;
+  background: rgba(215,166,180,0.15);
+  transform: translateX(2px);
+}
+
+.note-dir-title {
+  display: block;
+  font-family: var(--header-font);
+  font-size: 0.9rem;
+  font-weight: 620;
+  line-height: 1.38;
+}
+
+.notes-directory-list time {
+  display: block;
+  color: #8790a0;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  margin-top: 0.18rem;
+}
+
+.notes-feed {
+  min-width: 0;
+}
+
+.notes-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  margin: 1.8rem 0 0.5rem;
+}
+
+.page-number-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.38rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.page-number,
+.page-jump {
+  display: inline-flex;
+  min-width: 2.2rem;
+  height: 2.2rem;
+  align-items: center;
+  justify-content: center;
+  color: #607e9d;
+  background: rgba(255,255,255,0.68);
+  border: 1px solid rgba(143,168,200,0.24);
+  border-radius: 999px;
+  font-family: var(--header-font);
+  font-size: 0.88rem;
+  font-weight: 650;
+  text-decoration: none;
+  padding: 0 0.78rem;
+}
+
+.page-number:hover,
+.page-number:focus,
+.page-jump:hover,
+.page-jump:focus,
+.page-number.current {
+  color: #fff;
+  background: #c98fa0;
+  border-color: #c98fa0;
+  text-decoration: none;
+}
+
+.site-click-count {
+  color: #607e9d;
+  white-space: nowrap;
+}
+
+@media (max-width: 991px) {
+  .home-notes-shell {
+    display: block;
+  }
+
+  .notes-directory {
+    position: static;
+    margin-bottom: 1rem;
+  }
+
+  .notes-directory-inner {
+    max-height: none;
+  }
+
+  .notes-directory-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 0.35rem;
+  }
+
+  .notes-directory-list li + li {
+    margin-top: 0;
+  }
+}
+/* --- Suhe collapsible blue-pink notes sidebar --- */
+main.container-md {
+  max-width: min(1440px, calc(100vw - 32px));
+}
+
+.notes-workspace {
+  display: grid;
+  grid-template-columns: 292px minmax(0, 1fr);
+  gap: clamp(1rem, 1.7vw, 1.8rem);
+  align-items: start;
+  width: 100%;
+  transition: grid-template-columns 180ms ease;
+}
+
+.notes-workspace.notes-sidebar-collapsed {
+  grid-template-columns: 52px minmax(0, 1fr);
+}
+
+.notes-sidebar {
+  position: sticky;
+  top: 4.8rem;
+  min-width: 0;
+  z-index: 2;
+}
+
+.notes-sidebar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 24% 0%, rgba(215,166,180,0.24), transparent 12rem),
+    radial-gradient(circle at 100% 18%, rgba(143,168,200,0.25), transparent 13rem),
+    rgba(255,255,255,0.62);
+  border: 1px solid rgba(143,168,200,0.22);
+  box-shadow: 0 14px 38px rgba(90,106,128,0.10);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.notes-sidebar-top,
+.notes-sidebar-section {
+  position: relative;
+  z-index: 1;
+}
+
+.notes-sidebar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.45rem;
+  padding: 0.66rem 0.62rem 0.5rem;
+}
+
+.notes-sidebar-brand {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.45rem;
+  color: #394456;
+  text-decoration: none;
+  font-family: var(--header-font);
+  font-size: 0.88rem;
+  font-weight: 680;
+}
+
+.notes-sidebar-brand:hover,
+.notes-sidebar-brand:focus {
+  color: #c98fa0;
+  text-decoration: none;
+}
+
+.notes-brand-icon {
+  display: inline-flex;
+  width: 1.38rem;
+  height: 1.38rem;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  color: #fff;
+  background: linear-gradient(135deg, #8fa8c8, #d7a6b4);
+  border-radius: 6px;
+  font-size: 0.72rem;
+  box-shadow: 0 8px 18px rgba(143,168,200,0.28);
+}
+
+.notes-brand-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.notes-sidebar-toggle {
+  display: inline-flex;
+  width: 1.8rem;
+  height: 1.8rem;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  color: #607e9d;
+  background: rgba(255,255,255,0.58);
+  border: 1px solid rgba(143,168,200,0.22);
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.notes-sidebar-toggle:hover,
+.notes-sidebar-toggle:focus {
+  color: #9d6174;
+  background: rgba(215,166,180,0.18);
+  outline: none;
+}
+
+.notes-sidebar-section {
+  padding: 0 0.45rem 0.6rem;
+}
+
+.notes-sidebar-label {
+  color: #788293;
+  font-family: var(--header-font);
+  font-size: 0.75rem;
+  font-weight: 650;
+  margin: 0.1rem 0.55rem 0.42rem;
+}
+
+.notes-sidebar-list {
+  max-height: calc(100vh - 9rem);
+  overflow: auto;
+  list-style: none;
+  margin: 0;
+  padding: 0 0.16rem 0.2rem;
+  scrollbar-width: thin;
+}
+
+.notes-sidebar-list li + li {
+  margin-top: 0.08rem;
+}
+
+.notes-sidebar-link {
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr);
+  gap: 0.48rem;
+  align-items: start;
+  color: #394456;
+  border-radius: 7px;
+  padding: 0.44rem 0.52rem;
+  text-decoration: none;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.notes-sidebar-link:hover,
+.notes-sidebar-link:focus,
+.notes-sidebar-link.active {
+  color: #394456;
+  background: rgba(143,168,200,0.16);
+  text-decoration: none;
+}
+
+.notes-sidebar-link.active {
+  box-shadow: inset 3px 0 0 rgba(201,143,160,0.82);
+}
+
+.notes-doc-icon {
+  width: 0.78rem;
+  height: 0.94rem;
+  margin-top: 0.12rem;
+  border: 1px solid rgba(143,168,200,0.58);
+  border-radius: 2px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(248,246,247,0.92));
+  box-shadow: inset 0 0.18rem 0 rgba(215,166,180,0.18);
+}
+
+.notes-link-copy {
+  min-width: 0;
+}
+
+.note-dir-title {
+  display: block;
+  overflow: hidden;
+  color: inherit;
+  font-family: var(--header-font);
+  font-size: 0.88rem;
+  font-weight: 560;
+  line-height: 1.34;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.notes-sidebar-list time {
+  display: block;
+  color: #8790a0;
+  font-size: 0.73rem;
+  line-height: 1.28;
+  margin-top: 0.1rem;
+}
+
+.notes-content {
+  min-width: 0;
+  width: 100%;
+}
+
+.notes-workspace.notes-sidebar-collapsed .notes-sidebar::before {
+  background: rgba(255,255,255,0.70);
+}
+
+.notes-workspace.notes-sidebar-collapsed .notes-sidebar-top {
+  flex-direction: column;
+  padding: 0.55rem 0.35rem;
+}
+
+.notes-workspace.notes-sidebar-collapsed .notes-sidebar-brand {
+  justify-content: center;
+}
+
+.notes-workspace.notes-sidebar-collapsed .notes-brand-text,
+.notes-workspace.notes-sidebar-collapsed .notes-sidebar-label,
+.notes-workspace.notes-sidebar-collapsed .notes-link-copy {
+  display: none;
+}
+
+.notes-workspace.notes-sidebar-collapsed .notes-sidebar-section {
+  padding: 0 0.3rem 0.55rem;
+}
+
+.notes-workspace.notes-sidebar-collapsed .notes-sidebar-list {
+  max-height: calc(100vh - 9rem);
+  padding: 0;
+}
+
+.notes-workspace.notes-sidebar-collapsed .notes-sidebar-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.48rem 0;
+}
+
+.notes-workspace.notes-sidebar-collapsed .notes-sidebar-link.active {
+  box-shadow: inset 2px 0 0 rgba(201,143,160,0.82);
+}
+
+@media (max-width: 991px) {
+  .notes-workspace,
+  .notes-workspace.notes-sidebar-collapsed {
+    grid-template-columns: 1fr;
+  }
+
+  .notes-sidebar {
+    position: relative;
+    top: 0;
+    margin-bottom: 1rem;
+  }
+
+  .notes-workspace.notes-sidebar-collapsed .notes-sidebar-section {
+    display: none;
+  }
+
+  .notes-workspace.notes-sidebar-collapsed .notes-sidebar-top {
+    flex-direction: row;
+  }
+
+  .notes-sidebar-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.18rem;
+    max-height: none;
+  }
+}
+/* --- Suhe plant icons for notes sidebar --- */
+.notes-doc-icon {
+  display: none;
+}
+
+.notes-plant-icon {
+  position: relative;
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.12rem;
+  flex: 0 0 auto;
+}
+
+.notes-plant-icon::before,
+.notes-plant-icon::after {
+  content: "";
+  position: absolute;
+  display: block;
+}
+
+.notes-plant-icon::before {
+  left: 0.43rem;
+  top: 0.14rem;
+  width: 0.13rem;
+  height: 0.78rem;
+  border-radius: 999px;
+  background: #8aa99a;
+  transform: rotate(-8deg);
+}
+
+.notes-plant-icon::after {
+  left: 0.18rem;
+  top: 0.2rem;
+  width: 0.66rem;
+  height: 0.46rem;
+  border-radius: 0.55rem 0.55rem 0.55rem 0.06rem;
+  background: #9fb8aa;
+  box-shadow: 0.28rem 0.22rem 0 -0.02rem #d7a6b4;
+  transform: rotate(-22deg);
+}
+
+.notes-plant-icon.plant-1::before,
+.notes-plant-icon.plant-5::before {
+  background: #8fa8c8;
+  transform: rotate(7deg);
+}
+
+.notes-plant-icon.plant-1::after {
+  background: #b8c7dc;
+  box-shadow: 0.32rem 0.18rem 0 -0.03rem #c6bfd7;
+  border-radius: 0.55rem 0.08rem 0.55rem 0.55rem;
+  transform: rotate(24deg);
+}
+
+.notes-plant-icon.plant-2::before,
+.notes-plant-icon.plant-6::before {
+  background: #b7a3be;
+  transform: rotate(-2deg);
+}
+
+.notes-plant-icon.plant-2::after {
+  background: #d7a6b4;
+  box-shadow: -0.24rem 0.22rem 0 -0.04rem #9fb8aa, 0.28rem 0.2rem 0 -0.04rem #8fa8c8;
+  border-radius: 999px 999px 999px 0.12rem;
+  transform: rotate(-10deg);
+}
+
+.notes-plant-icon.plant-3::before {
+  background: #91a7a1;
+  height: 0.86rem;
+}
+
+.notes-plant-icon.plant-3::after {
+  left: 0.14rem;
+  top: 0.16rem;
+  width: 0.72rem;
+  height: 0.38rem;
+  background: #adc1b4;
+  box-shadow: 0.18rem 0.26rem 0 -0.04rem #d7a6b4, -0.08rem 0.46rem 0 -0.08rem #8fa8c8;
+  border-radius: 0.7rem 0.12rem 0.7rem 0.12rem;
+  transform: rotate(16deg);
+}
+
+.notes-plant-icon.plant-4::before {
+  background: #c98fa0;
+  transform: rotate(-12deg);
+}
+
+.notes-plant-icon.plant-4::after {
+  background: #e1b7c2;
+  box-shadow: 0.34rem 0.2rem 0 -0.04rem #9fb8aa;
+  border-radius: 0.14rem 0.58rem 0.58rem 0.58rem;
+  transform: rotate(-30deg);
+}
+
+.notes-plant-icon.plant-5::after {
+  left: 0.24rem;
+  top: 0.1rem;
+  width: 0.52rem;
+  height: 0.68rem;
+  background: #b8c7dc;
+  box-shadow: -0.2rem 0.24rem 0 -0.08rem #d7a6b4, 0.22rem 0.28rem 0 -0.08rem #9fb8aa;
+  border-radius: 999px 999px 0.16rem 0.16rem;
+  transform: rotate(8deg);
+}
+
+.notes-plant-icon.plant-6::after {
+  background: #c6bfd7;
+  box-shadow: 0.28rem 0.2rem 0 -0.04rem #8fa8c8;
+  border-radius: 0.58rem 0.58rem 0.1rem 0.58rem;
+  transform: rotate(34deg);
+}
+
+.notes-plant-icon.plant-7::before {
+  background: #8aa99a;
+  transform: rotate(0deg);
+}
+
+.notes-plant-icon.plant-7::after {
+  left: 0.16rem;
+  top: 0.18rem;
+  width: 0.7rem;
+  height: 0.42rem;
+  background: #9fb8aa;
+  box-shadow: 0.12rem 0.28rem 0 -0.05rem #b8c7dc, 0.34rem 0.44rem 0 -0.08rem #d7a6b4;
+  border-radius: 0.55rem 0.55rem 0.08rem 0.55rem;
+  transform: rotate(-16deg);
+}
+
+.notes-workspace.notes-sidebar-collapsed .notes-plant-icon {
+  margin-top: 0;
+}
